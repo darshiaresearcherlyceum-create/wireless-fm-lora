@@ -1,0 +1,93 @@
+data:
+  data_dir: dataset_wireless
+  environments:
+    seen:
+    - Rural_Macro
+    - Urban_Macro
+    - Indoor_Factory
+    unseen:
+    - Unseen_Urban_Dense
+  num_samples_per_env: 300
+  test_split: 0.15
+  train_split: 0.7
+  val_split: 0.15
+model:
+  backbone: gpt2
+  cond_dim: 384
+  freeze_backbone: true
+  freeze_scene_encoder: true
+  hypernet_hidden_dim: 512
+  latent_rank_dim: 256
+  lora_alpha: 1.0
+  rank_set:
+  - 2
+  - 4
+  - 8
+  - 16
+  - 32
+  scene_emb_dim: 256
+  scene_encoder: vit_b_16
+  semantic_coupling: false
+  task_emb_dim: 128
+system:
+  device: cuda
+  log_dir: logs
+  num_workers: 2
+  save_dir: results
+  seed: 42
+tasks:
+  task_0:
+    loss: mse
+    metric: NMSE_dB
+    name: channel_estimation
+    output_dim: 1024
+  task_1:
+    loss: mse
+    metric: BER
+    name: mimo_detection
+    output_dim: 16
+  task_2:
+    loss: mse
+    metric: SumRate_bps_Hz
+    name: precoding
+    output_dim: 1024
+  task_3:
+    loss: bce_with_logits
+    metric: BER
+    name: channel_decoding
+    output_dim: 16
+  task_4:
+    loss: mse
+    metric: RMSE_m
+    name: user_localization
+    output_dim: 24
+training:
+  batch_size: 16
+  beta_rank_penalty: 0.0
+  epochs_per_env: 10
+  ewc_lambda: 1000.0
+  fisher_samples: 300
+  gumbel_tau_decay: 0.95
+  gumbel_tau_init: 1.0
+  gumbel_tau_min: 0.1
+  learning_rate: 0.0005
+  lr_decay_gamma: 0.5
+  lr_decay_step: 4
+  warmup_epochs: 0
+  weight_decay: 0.0001
+wireless:
+  carrier_freq_hz: 3.5e9
+  feature_dim: 1040
+  modulation: QPSK
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  num_users: 8
+  snr_list_db:
+  - -5
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  subcarrier_spacing_hz: 15000.0

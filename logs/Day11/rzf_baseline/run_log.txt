@@ -1,0 +1,13 @@
+2026-09-15 16:20:35 [INFO] ================================================================================
+2026-09-15 16:20:35 [INFO] METHOD: RZF_BASELINE
+2026-09-15 16:20:35 [INFO] Trainable Parameters: 0
+2026-09-15 16:20:35 [INFO] Evaluation SNR Grid: [-5, 0, 5, 10, 15, 20, 25] dB
+2026-09-15 16:20:35 [INFO] ================================================================================
+2026-09-15 16:20:36 [INFO] SNR: -5 dB | PREC Sum-Rate:  26.21 bps/Hz
+2026-09-15 16:20:36 [INFO] SNR:  0 dB | PREC Sum-Rate:  38.00 bps/Hz
+2026-09-15 16:20:37 [INFO] SNR:  5 dB | PREC Sum-Rate:  50.67 bps/Hz
+2026-09-15 16:20:37 [INFO] SNR: 10 dB | PREC Sum-Rate:  63.74 bps/Hz
+2026-09-15 16:20:37 [INFO] SNR: 15 dB | PREC Sum-Rate:  76.95 bps/Hz
+2026-09-15 16:20:38 [INFO] SNR: 20 dB | PREC Sum-Rate:  90.20 bps/Hz
+2026-09-15 16:20:38 [INFO] SNR: 25 dB | PREC Sum-Rate: 103.44 bps/Hz
+2026-09-15 16:20:38 [INFO] Saved SNR evaluation metrics to: logs/day11/rzf_baseline\snr_evaluation.csv

@@ -1,0 +1,87 @@
+# Official Proposed config used for Day 11 results.
+# Adaptive rank is present, but ablation A2 shows it does not improve accuracy.
+
+# ==============================================================================
+# Wireless Foundation Model (Wireless-FM) - Proposed Dynamic LoRA
+# Official Configuration File
+# ==============================================================================
+
+system:
+  seed: 42
+  device: "cpu"
+  num_workers: 2
+  save_dir: "results"
+  log_dir: "logs/Day11"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  subcarrier_spacing_hz: 15000.0
+  carrier_freq_hz: 3.5e9
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  modulation: "QPSK"
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Urban_Macro"]
+    unseen: []
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+model:
+  backbone: "gpt2"
+  freeze_backbone: true
+  scene_encoder: "vit_b_16"
+  freeze_scene_encoder: true
+  scene_emb_dim: 256
+  task_emb_dim: 128
+  cond_dim: 384
+  rank_set: [2, 4, 8, 16, 32]
+  hypernet_hidden_dim: 512
+  latent_rank_dim: 256
+  semantic_coupling: false
+  lora_alpha: 1.0
+
+training:
+  batch_size: 16
+  learning_rate: 0.0005
+  weight_decay: 1.0e-4
+  epochs: 10
+  epochs_per_env: 10
+  warmup_epochs: 0
+  gumbel_tau_init: 1.0
+  gumbel_tau_min: 0.1
+  gumbel_tau_decay: 0.95
+  beta_rank_penalty: 0.0
+
+tasks:
+  task_0:
+    name: "channel_estimation"
+    metric: "NMSE_dB"
+    loss: "mse"
+    output_dim: 1024
+  task_1:
+    name: "mimo_detection"
+    metric: "BER"
+    loss: "mse"
+    output_dim: 16
+  task_2:
+    name: "precoding"
+    metric: "SumRate_bps_Hz"
+    loss: "mse"
+    output_dim: 1024
+  task_3:
+    name: "channel_decoding"
+    metric: "BER"
+    loss: "bce_with_logits"
+    output_dim: 16
+  task_4:
+    name: "localization"
+    metric: "RMSE_m"
+    loss: "mse"
+    output_dim: 24

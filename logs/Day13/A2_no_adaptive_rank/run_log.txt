@@ -1,0 +1,29 @@
+2026-09-16 13:20:05 [INFO] ================================================================================
+2026-09-16 13:20:05 [INFO] DAY 13 ABLATION STUDY: A2_no_adaptive_rank
+2026-09-16 13:20:05 [INFO] Environment: Urban_Macro | Device: cpu | Epochs: 10
+2026-09-16 13:20:05 [INFO] ================================================================================
+2026-09-16 13:20:06 [INFO] Description: Ablation A2: No Adaptive Rank (Forced rank=8, no Gumbel rank gate)
+2026-09-16 13:20:06 [INFO] Trainable Parameters: 35,037,525
+2026-09-16 13:22:30 [INFO] Epoch 01/10 | Train Loss: 33.1289 | Val -> CE: -10.74 dB | DET_BER_MMSE_init: 0.0001 | PREC:  1.65 bps/Hz | DEC: 0.1844 | LOC: 36.15 m | Runtime: 143.3s
+2026-09-16 13:24:52 [INFO] Epoch 02/10 | Train Loss: 7.2804 | Val -> CE: -12.79 dB | DET_BER_MMSE_init: 0.0001 | PREC:  2.28 bps/Hz | DEC: 0.0655 | LOC: 30.04 m | Runtime: 141.9s
+2026-09-16 13:27:17 [INFO] Epoch 03/10 | Train Loss: 3.7514 | Val -> CE: -13.37 dB | DET_BER_MMSE_init: 0.0001 | PREC:  2.86 bps/Hz | DEC: 0.0306 | LOC: 22.50 m | Runtime: 143.6s
+2026-09-16 13:29:41 [INFO] Epoch 04/10 | Train Loss: 2.6047 | Val -> CE: -13.75 dB | DET_BER_MMSE_init: 0.0001 | PREC:  3.13 bps/Hz | DEC: 0.0173 | LOC: 17.42 m | Runtime: 144.0s
+2026-09-16 13:32:05 [INFO] Epoch 05/10 | Train Loss: 2.1886 | Val -> CE: -14.51 dB | DET_BER_MMSE_init: 0.0000 | PREC:  3.32 bps/Hz | DEC: 0.0124 | LOC: 15.95 m | Runtime: 143.0s
+2026-09-16 13:34:28 [INFO] Epoch 06/10 | Train Loss: 1.7694 | Val -> CE: -15.77 dB | DET_BER_MMSE_init: 0.0002 | PREC:  3.51 bps/Hz | DEC: 0.0106 | LOC: 15.44 m | Runtime: 142.0s
+2026-09-16 13:36:50 [INFO] Epoch 07/10 | Train Loss: 1.5430 | Val -> CE: -16.44 dB | DET_BER_MMSE_init: 0.0001 | PREC:  3.60 bps/Hz | DEC: 0.0082 | LOC: 14.98 m | Runtime: 142.0s
+2026-09-16 13:39:13 [INFO] Epoch 08/10 | Train Loss: 1.4644 | Val -> CE: -16.66 dB | DET_BER_MMSE_init: 0.0001 | PREC:  3.72 bps/Hz | DEC: 0.0078 | LOC: 14.92 m | Runtime: 142.7s
+2026-09-16 13:41:38 [INFO] Epoch 09/10 | Train Loss: 1.3842 | Val -> CE: -16.72 dB | DET_BER_MMSE_init: 0.0001 | PREC:  3.72 bps/Hz | DEC: 0.0070 | LOC: 14.82 m | Runtime: 144.2s
+2026-09-16 13:44:02 [INFO] Epoch 10/10 | Train Loss: 1.3048 | Val -> CE: -16.75 dB | DET_BER_MMSE_init: 0.0000 | PREC:  3.76 bps/Hz | DEC: 0.0066 | LOC: 14.64 m | Runtime: 143.0s
+2026-09-16 13:44:02 [INFO] Training complete. Best model checkpoint saved to: results\checkpoints\day13_A2_no_adaptive_rank_best.pt
+2026-09-16 13:44:03 [INFO] --------------------------------------------------------------------------------
+2026-09-16 13:44:03 [INFO] Commencing Test Split Evaluation Across SNR Grid
+2026-09-16 13:44:03 [INFO] Evaluation SNR Grid: [-5, 0, 5, 10, 15, 20, 25] dB
+2026-09-16 13:44:03 [INFO] --------------------------------------------------------------------------------
+2026-09-16 13:44:15 [INFO] SNR:  -5 dB | CE NMSE:   -7.65 dB | DET_BER_MMSE_init: 0.0312 | PREC Rate: 2.21 bps/Hz | DEC BER: 0.0396 | LOC RMSE: 18.79 m
+2026-09-16 13:44:27 [INFO] SNR:   0 dB | CE NMSE:  -12.27 dB | DET_BER_MMSE_init: 0.0079 | PREC Rate: 3.25 bps/Hz | DEC BER: 0.0165 | LOC RMSE: 16.33 m
+2026-09-16 13:44:41 [INFO] SNR:   5 dB | CE NMSE:  -16.29 dB | DET_BER_MMSE_init: 0.0014 | PREC Rate: 3.77 bps/Hz | DEC BER: 0.0087 | LOC RMSE: 14.42 m
+2026-09-16 13:44:53 [INFO] SNR:  10 dB | CE NMSE:  -16.83 dB | DET_BER_MMSE_init: 0.0001 | PREC Rate: 3.95 bps/Hz | DEC BER: 0.0063 | LOC RMSE: 14.00 m
+2026-09-16 13:45:06 [INFO] SNR:  15 dB | CE NMSE:  -15.92 dB | DET_BER_MMSE_init: 0.0000 | PREC Rate: 4.02 bps/Hz | DEC BER: 0.0058 | LOC RMSE: 13.87 m
+2026-09-16 13:45:19 [INFO] SNR:  20 dB | CE NMSE:  -20.21 dB | DET_BER_MMSE_init: 0.0000 | PREC Rate: 4.04 bps/Hz | DEC BER: 0.0057 | LOC RMSE: 13.71 m
+2026-09-16 13:45:32 [INFO] SNR:  25 dB | CE NMSE:  -24.24 dB | DET_BER_MMSE_init: 0.0000 | PREC Rate: 4.04 bps/Hz | DEC BER: 0.0057 | LOC RMSE: 13.69 m
+2026-09-16 13:45:32 [INFO] Saved SNR evaluation results to: logs\day13\A2_no_adaptive_rank\snr_evaluation.csv

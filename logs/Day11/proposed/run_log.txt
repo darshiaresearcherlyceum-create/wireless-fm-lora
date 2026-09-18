@@ -1,0 +1,35 @@
+2026-09-16 10:01:59,204 [INFO] Starting Multi-Task Training on environment: Urban_Macro (Device: cpu)
+2026-09-16 10:02:00,468 [INFO] Trainable parameters: 35,087,450
+2026-09-16 10:02:00,469 [INFO] 
+--- Verifying Gradient Flow Across Trainable Modules ---
+2026-09-16 10:02:11,241 [INFO]   Module [hypernetwork] -> Gradients non-zero: True | Finite: True
+2026-09-16 10:02:11,242 [INFO]   Module [rank_gate   ] -> Gradients non-zero: True | Finite: True
+2026-09-16 10:02:11,252 [INFO]   Module [task_heads  ] -> Gradients non-zero: True | Finite: True
+2026-09-16 10:02:11,253 [INFO]   Module [scene_proj  ] -> Gradients non-zero: True | Finite: True
+2026-09-16 10:02:11,257 [INFO]   Module [input_proj  ] -> Gradients non-zero: True | Finite: True
+2026-09-16 10:02:11,262 [INFO] --- Gradient Flow Verification Passed ---
+
+2026-09-16 10:04:54,121 [INFO] Epoch 01/10 (lr=4.88e-04) | Train Loss: 39.3915 (CE:183.0131, DET:0.4220, PREC:1.9232, DEC:0.6184, LOC:10.9806) | Avg Rank: 12.4 [r2:20.2%, r4:21.0%, r8:17.7%, r16:21.3%, r32:19.8%] | Val -> CE NMSE: -8.62dB | DET BER: 0.0003 | PREC: 1.70b/s/Hz | DEC BER: 0.1685 | LOC RMSE: 34.40m | Runtime: 162.9s
+2026-09-16 10:08:12,294 [INFO] Epoch 02/10 (lr=4.53e-04) | Train Loss: 8.5810 (CE:33.8185, DET:0.3598, PREC:1.3514, DEC:0.4463, LOC:6.9292) | Avg Rank: 11.4 [r2:22.1%, r4:21.5%, r8:20.8%, r16:18.2%, r32:17.4%] | Val -> CE NMSE: -11.24dB | DET BER: 0.0001 | PREC: 2.59b/s/Hz | DEC BER: 0.0583 | LOC RMSE: 28.24m | Runtime: 197.4s
+2026-09-16 10:11:41,181 [INFO] Epoch 03/10 (lr=3.99e-04) | Train Loss: 4.0095 (CE:13.7635, DET:0.3435, PREC:0.7607, DEC:0.3218, LOC:4.8578) | Avg Rank: 10.4 [r2:20.7%, r4:24.8%, r8:23.2%, r16:17.8%, r32:13.6%] | Val -> CE NMSE: -11.64dB | DET BER: 0.0002 | PREC: 3.18b/s/Hz | DEC BER: 0.0288 | LOC RMSE: 21.72m | Runtime: 207.8s
+2026-09-16 10:15:49,277 [INFO] Epoch 04/10 (lr=3.31e-04) | Train Loss: 2.7532 (CE:9.0192, DET:0.3481, PREC:0.3795, DEC:0.2358, LOC:3.7837) | Avg Rank: 10.7 [r2:19.6%, r4:26.0%, r8:22.4%, r16:17.5%, r32:14.5%] | Val -> CE NMSE: -11.89dB | DET BER: 0.0000 | PREC: 3.43b/s/Hz | DEC BER: 0.0206 | LOC RMSE: 18.02m | Runtime: 247.3s
+2026-09-16 10:18:47,997 [INFO] Epoch 05/10 (lr=2.55e-04) | Train Loss: 2.0621 (CE:6.5427, DET:0.3338, PREC:0.1410, DEC:0.1746, LOC:3.1185) | Avg Rank: 10.5 [r2:20.6%, r4:26.4%, r8:20.2%, r16:18.9%, r32:13.8%] | Val -> CE NMSE: -12.06dB | DET BER: 0.0001 | PREC: 3.84b/s/Hz | DEC BER: 0.0124 | LOC RMSE: 16.52m | Runtime: 177.7s
+2026-09-16 10:21:57,261 [INFO] Epoch 06/10 (lr=1.79e-04) | Train Loss: 1.7517 (CE:5.4123, DET:0.3368, PREC:-0.0190, DEC:0.1426, LOC:2.8856) | Avg Rank: 10.5 [r2:17.8%, r4:29.5%, r8:18.2%, r16:22.3%, r32:12.2%] | Val -> CE NMSE: -12.41dB | DET BER: 0.0000 | PREC: 3.94b/s/Hz | DEC BER: 0.0095 | LOC RMSE: 15.93m | Runtime: 188.3s
+2026-09-16 10:25:54,648 [INFO] Epoch 07/10 (lr=1.11e-04) | Train Loss: 1.5717 (CE:4.7815, DET:0.3381, PREC:-0.1692, DEC:0.1239, LOC:2.7840) | Avg Rank: 10.5 [r2:18.7%, r4:32.3%, r8:15.0%, r16:20.3%, r32:13.8%] | Val -> CE NMSE: -12.63dB | DET BER: 0.0001 | PREC: 4.08b/s/Hz | DEC BER: 0.0089 | LOC RMSE: 15.82m | Runtime: 236.6s
+2026-09-16 10:28:46,330 [INFO] Epoch 08/10 (lr=5.68e-05) | Train Loss: 1.4308 (CE:4.3239, DET:0.3365, PREC:-0.2893, DEC:0.1123, LOC:2.6705) | Avg Rank: 11.1 [r2:17.7%, r4:32.6%, r8:12.5%, r16:21.9%, r32:15.3%] | Val -> CE NMSE: -12.72dB | DET BER: 0.0002 | PREC: 4.14b/s/Hz | DEC BER: 0.0071 | LOC RMSE: 15.49m | Runtime: 170.8s
+2026-09-16 10:32:01,016 [INFO] Epoch 09/10 (lr=2.20e-05) | Train Loss: 1.3864 (CE:4.2710, DET:0.3326, PREC:-0.3976, DEC:0.1060, LOC:2.6201) | Avg Rank: 11.8 [r2:16.5%, r4:28.1%, r8:14.3%, r16:24.7%, r32:16.3%] | Val -> CE NMSE: -12.76dB | DET BER: 0.0001 | PREC: 4.19b/s/Hz | DEC BER: 0.0076 | LOC RMSE: 15.36m | Runtime: 193.5s
+2026-09-16 10:34:57,009 [INFO] Epoch 10/10 (lr=1.00e-05) | Train Loss: 1.3859 (CE:4.3507, DET:0.3459, PREC:-0.4582, DEC:0.1055, LOC:2.5854) | Avg Rank: 12.4 [r2:15.5%, r4:28.7%, r8:13.1%, r16:23.9%, r32:18.8%] | Val -> CE NMSE: -12.77dB | DET BER: 0.0001 | PREC: 4.22b/s/Hz | DEC BER: 0.0071 | LOC RMSE: 15.31m | Runtime: 175.2s
+2026-09-16 10:34:57,714 [INFO] Training completed. Best model checkpoint saved to: results\checkpoints\proposed(2)_best.pt
+2026-09-16 10:34:58 [INFO] ================================================================================
+2026-09-16 10:34:58 [INFO] METHOD: PROPOSED
+2026-09-16 10:34:58 [INFO] Trainable Parameters: 35,087,450
+2026-09-16 10:34:58 [INFO] Evaluation SNR Grid: [-5, 0, 5, 10, 15, 20, 25] dB
+2026-09-16 10:34:58 [INFO] ================================================================================
+2026-09-16 10:35:16 [INFO] SNR: -5 dB | CE NMSE:  -8.08 dB | DET BER: 0.0309 (SER: 0.0610) | PREC Sum-Rate:  2.22 bps/Hz | DEC BER: 0.0397 | LOC RMSE: 19.28 m
+2026-09-16 10:35:28 [INFO] SNR:  0 dB | CE NMSE: -12.58 dB | DET BER: 0.0080 (SER: 0.0158) | PREC Sum-Rate:  3.25 bps/Hz | DEC BER: 0.0164 | LOC RMSE: 16.16 m
+2026-09-16 10:35:40 [INFO] SNR:  5 dB | CE NMSE: -16.36 dB | DET BER: 0.0012 (SER: 0.0023) | PREC Sum-Rate:  3.75 bps/Hz | DEC BER: 0.0092 | LOC RMSE: 14.67 m
+2026-09-16 10:35:51 [INFO] SNR: 10 dB | CE NMSE: -16.86 dB | DET BER: 0.0001 (SER: 0.0002) | PREC Sum-Rate:  3.97 bps/Hz | DEC BER: 0.0068 | LOC RMSE: 14.45 m
+2026-09-16 10:36:02 [INFO] SNR: 15 dB | CE NMSE: -15.93 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.04 bps/Hz | DEC BER: 0.0059 | LOC RMSE: 14.27 m
+2026-09-16 10:36:14 [INFO] SNR: 20 dB | CE NMSE: -20.11 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.06 bps/Hz | DEC BER: 0.0055 | LOC RMSE: 14.23 m
+2026-09-16 10:36:25 [INFO] SNR: 25 dB | CE NMSE: -23.95 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.07 bps/Hz | DEC BER: 0.0056 | LOC RMSE: 14.20 m
+2026-09-16 10:36:25 [INFO] Saved SNR evaluation metrics to: logs/Day11\proposed\snr_evaluation(2).csv

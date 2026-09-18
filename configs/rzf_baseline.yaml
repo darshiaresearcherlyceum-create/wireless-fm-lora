@@ -1,0 +1,28 @@
+# Official Classical Regularized Zero-Forcing (RZF) Baseline Configuration
+# Analytical closed-form precoder baseline (No GPT-2, No LoRA, 0 Trainable Parameters).
+
+system:
+  seed: 42
+  save_dir: "results"
+  log_dir: "logs/Day11/rzf_baseline"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Urban_Macro"]
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+baseline:
+  method: "RZF"
+  alpha: 0.018
+  trainable_params: 0
+  neural_backbone: false

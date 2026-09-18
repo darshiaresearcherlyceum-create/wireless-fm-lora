@@ -1,0 +1,105 @@
+# ==============================================================================
+# Wireless Foundation Model (Wireless-FM) with Environment-Aware Dynamic LoRA
+# Configuration File
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# System & Reproducibility Settings
+# ------------------------------------------------------------------------------
+system:
+  seed: 42
+  device: "cuda" # "cuda" or "cpu"
+  num_workers: 2
+  save_dir: "results"
+  log_dir: "logs"
+
+# ------------------------------------------------------------------------------
+# Wireless Physical Layer Parameters
+# ------------------------------------------------------------------------------
+wireless:
+  num_users: 8              # K users
+  num_bs_antennas: 64       # N_BS (8x8 UPA configuration)
+  num_subcarriers: 64       # N_sub OFDM subcarriers
+  subcarrier_spacing_hz: 15000.0 # 15 kHz 3GPP standard spacing
+  carrier_freq_hz: 3.5e9    # 3.5 GHz sub-6 GHz carrier
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25] # SNR evaluation grid
+  modulation: "QPSK"        # Modulation order
+  feature_dim: 1040         # Uniform input feature dimension padded
+
+# ------------------------------------------------------------------------------
+# Dataset & Environment Stream
+# ------------------------------------------------------------------------------
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Rural_Macro", "Urban_Macro", "Indoor_Factory"]
+    unseen: ["Unseen_Urban_Dense"]
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+# ------------------------------------------------------------------------------
+# Model Architecture Hyperparameters
+# ------------------------------------------------------------------------------
+model:
+  backbone: "gpt2"           # Pretrained GPT-2 backbone (12 layers, 768 hidden dim)
+  freeze_backbone: true      # Freeze pre-trained transformer backbone
+  scene_encoder: "vit_b_16"  # Pretrained ViT-B/16 for 3D environment projections
+  freeze_scene_encoder: true # Freeze vision backbone
+  scene_emb_dim: 256         # Projected scene descriptor dimension
+  task_emb_dim: 128          # Learnable task embedding dimension
+  cond_dim: 384              # scene_emb (256) + task_emb (128)
+  rank_set: [2, 4, 8, 16, 32] # Discrete candidate ranks for LoRA adapters
+  hypernet_hidden_dim: 512   # Hidden dimension in LoRA parameter generator
+  latent_rank_dim: 256       # Intermediate bottleneck for hypernetwork weights
+  semantic_coupling: false   # Enable decoding-to-localization feature fusion (ablation only)
+  lora_alpha: 1.0            # Dynamic LoRA scaling factor matched with Static LoRA
+
+# ------------------------------------------------------------------------------
+# Training & Optimization
+# ------------------------------------------------------------------------------
+training:
+  batch_size: 16
+  learning_rate: 5.0e-4
+  weight_decay: 1.0e-4
+  epochs_per_env: 10
+  warmup_epochs: 0
+  lr_decay_step: 4
+  lr_decay_gamma: 0.5
+  gumbel_tau_init: 1.0
+  gumbel_tau_min: 0.1
+  gumbel_tau_decay: 0.95
+  beta_rank_penalty: 0.0     # Zero penalty so model can freely utilize optimal ranks
+  ewc_lambda: 1000.0         # Continual learning EWC penalty coefficient
+  fisher_samples: 300        # Number of samples for diagonal Fisher estimation
+
+# ------------------------------------------------------------------------------
+# Physical Layer Tasks (0 to 4)
+# ------------------------------------------------------------------------------
+tasks:
+  task_0:
+    name: "channel_estimation"
+    metric: "NMSE_dB"
+    loss: "mse"
+    output_dim: 1024
+  task_1:
+    name: "mimo_detection"
+    metric: "BER"
+    loss: "mse"
+    output_dim: 16
+  task_2:
+    name: "precoding"
+    metric: "SumRate_bps_Hz"
+    loss: "mse"
+    output_dim: 1024
+  task_3:
+    name: "channel_decoding"
+    metric: "BER"
+    loss: "bce_with_logits"
+    output_dim: 16
+  task_4:
+    name: "user_localization"
+    metric: "RMSE_m"
+    loss: "mse"
+    output_dim: 24

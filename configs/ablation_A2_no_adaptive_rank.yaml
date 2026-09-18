@@ -1,0 +1,38 @@
+# Day 13 Ablation A2: No Adaptive Rank
+# Discrete rank gate removed; hypernetwork generates fixed rank r=8 LoRA matrices.
+
+system:
+  seed: 42
+  device: "cpu"
+  save_dir: "results"
+  log_dir: "logs/Day13/A2_no_adaptive_rank"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Urban_Macro"]
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+model:
+  ablation: "A2_no_adaptive_rank"
+  backbone: "gpt2"
+  freeze_backbone: true
+  scene_encoder: "vit_b_16"
+  fixed_rank: 8
+  adaptive_rank: false
+  semantic_coupling: false
+
+training:
+  batch_size: 16
+  learning_rate: 0.0005
+  epochs: 10

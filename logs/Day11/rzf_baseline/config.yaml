@@ -1,0 +1,40 @@
+# ==============================================================================
+# Method B0: Classical Regularized Zero-Forcing (RZF) Precoding Baseline
+# ==============================================================================
+method:
+  id: "B0_RZF"
+  name: "Classical RZF Baseline"
+  description: "Classical analytical Regularized Zero-Forcing baseline using linear algebra solve on channel CSI."
+  architecture_type: "analytical_baseline"
+  
+  # Method Specifications
+  input: "estimated_or_true_channel" # Channel matrix H (CSI)
+  output: "W_RZF"                     # Analytical RZF precoder W = H^H (H H^H + alpha I)^(-1)
+  training: "none"                   # No neural training for precoding; analytical computation
+  precoding_mechanism: "analytical_solve" # Solves (H H^H + alpha I) X = H, W = X^H
+  alpha_regularization: 0.018         # Standard MMSE regularization factor based on noise variance
+  power_normalization: "column_norm"  # ||w_k||_2 = 1 => total power ||W||_F^2 = K = 8
+  reporting: "Report RZF sum-rate only as a precoding baseline"
+
+system:
+  seed: 42
+  device: "cpu"
+  save_dir: "results"
+  log_dir: "logs/day11/rzf_baseline"
+
+wireless:
+  num_users: 8              # K users
+  num_bs_antennas: 64       # N_BS (8x8 UPA configuration)
+  num_subcarriers: 64       # N_sub OFDM subcarriers
+  subcarrier_spacing_hz: 15000.0
+  carrier_freq_hz: 3.5e9
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  modulation: "QPSK"
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  env_name: "Urban_Macro"
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15

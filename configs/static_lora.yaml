@@ -1,0 +1,63 @@
+# Official Static LoRA Baseline Configuration (r=8)
+# Fixed rank r=8 LoRA adapters on frozen GPT-2 backbone without hypernetwork.
+
+system:
+  seed: 42
+  device: "cpu"
+  num_workers: 2
+  save_dir: "results"
+  log_dir: "logs/Day11/static_lora"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  subcarrier_spacing_hz: 15000.0
+  carrier_freq_hz: 3.5e9
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  modulation: "QPSK"
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Urban_Macro"]
+    unseen: []
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+model:
+  backbone: "gpt2"
+  freeze_backbone: true
+  rank: 8
+  hypernetwork: false
+  scene_encoder: null
+  semantic_coupling: false
+  lora_alpha: 1.0
+
+training:
+  batch_size: 16
+  learning_rate: 0.0005
+  weight_decay: 1.0e-4
+  epochs: 10
+  epochs_per_env: 10
+  warmup_epochs: 0
+
+tasks:
+  task_0:
+    name: "channel_estimation"
+    output_dim: 1024
+  task_1:
+    name: "mimo_detection"
+    output_dim: 16
+  task_2:
+    name: "precoding"
+    output_dim: 1024
+  task_3:
+    name: "channel_decoding"
+    output_dim: 16
+  task_4:
+    name: "localization"
+    output_dim: 24

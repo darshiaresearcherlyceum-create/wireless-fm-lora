@@ -1,0 +1,57 @@
+# ==============================================================================
+# Method B3: Static LoRA (r=8) Foundation Model Baseline
+# ==============================================================================
+method:
+  id: "B3_STATIC_LORA"
+  name: "Static LoRA (r=8)"
+  description: "Foundation Model with standard static LoRA adapters of fixed rank r=8, without hypernetwork or dynamic rank gating."
+  architecture_type: "static_lora"
+
+  # Method Specifications
+  backbone: "gpt2"
+  freeze_backbone: true             # Frozen GPT-2 (12 layers, 768 hidden dim)
+  lora_rank: 8                      # Fixed rank r=8 across all layers
+  hypernetwork: false               # No hypernetwork
+  rank_gating: false                # No adaptive rank gating
+  rzf_inside_model: false           # No analytical RZF inside the model forward path
+  task_heads: "same_as_proposed"    # Shares the identical dedicated task heads as Proposed
+  precoding_head: "neural_mlp"      # Pure neural precoder predicting W_NN from features
+  power_normalization: "column_norm" # ||w_k||_2 = 1 => total power ||W||_F^2 = K = 8
+
+system:
+  seed: 42
+  device: "cpu"
+  save_dir: "results"
+  log_dir: "logs/day11/static_lora"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  subcarrier_spacing_hz: 15000.0
+  carrier_freq_hz: 3.5e9
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  modulation: "QPSK"
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  env_name: "Urban_Macro"
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+model:
+  backbone: "gpt2"
+  freeze_backbone: true
+  lora_rank: 8
+  lora_alpha: 8.0
+  use_hypernetwork: false
+  use_rank_gate: false
+  semantic_coupling: false
+
+training:
+  batch_size: 16
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  epochs: 10

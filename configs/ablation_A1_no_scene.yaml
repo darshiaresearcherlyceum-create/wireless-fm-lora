@@ -1,0 +1,37 @@
+# Day 13 Ablation A1: No Scene Conditioning
+# ViT scene encoder removed; zero-filled conditioning vector fed to hypernetwork.
+
+system:
+  seed: 42
+  device: "cpu"
+  save_dir: "results"
+  log_dir: "logs/Day13/A1_no_scene"
+
+wireless:
+  num_users: 8
+  num_bs_antennas: 64
+  num_subcarriers: 64
+  snr_list_db: [-5, 0, 5, 10, 15, 20, 25]
+  feature_dim: 1040
+
+data:
+  data_dir: "dataset_wireless"
+  environments:
+    seen: ["Urban_Macro"]
+  num_samples_per_env: 300
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+model:
+  ablation: "A1_no_scene"
+  backbone: "gpt2"
+  freeze_backbone: true
+  scene_encoder: null
+  rank_set: [2, 4, 8, 16, 32]
+  semantic_coupling: false
+
+training:
+  batch_size: 16
+  learning_rate: 0.0005
+  epochs: 10

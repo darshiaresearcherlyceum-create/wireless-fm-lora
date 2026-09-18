@@ -1,0 +1,82 @@
+================================================================================
+PART B: DETECTION BIT-LEVEL DEBUG REPORT
+METHOD: STATIC LoRA BASELINE (rank=8, Day 11 Checkpoint)
+CHECKPOINT: results/checkpoints/static_lora_day11_best.pt
+================================================================================
+
+--- ARCHITECTURAL & MODULATION SPECIFICATIONS ---
+1. Constellation Used:
+   - Constellation: QPSK (Quadrature Phase Shift Keying), M = 4.
+   - Mapping: 2 bits per symbol (1 bit in-phase I, 1 bit quadrature Q).
+   - Gray Coded symbols: x = ((1 - 2*b_I) + j*(1 - 2*b_Q)) / sqrt(2).
+   - Constellation points: (+1+j)/sqrt(2), (+1-j)/sqrt(2), (-1+j)/sqrt(2), (-1-j)/sqrt(2).
+
+2. Head Output Type:
+   - The MIMO Detection head outputs CONTINUOUS SYMBOLS (soft real/imag components in R^{B x 64 x 16}).
+   - It does NOT output raw binary bits or unnormalized logits.
+   - The architecture combines a Linear MMSE base symbol estimate with a learned neural residual:
+       base_syms = [z_mmse_real, z_mmse_imag]
+       out_det = base_syms + delta_det
+
+3. BER Calculation Stage (Before or After Slicing?):
+   - BER is computed strictly AFTER SLICING (hard-decision thresholding).
+   - Continuous real/imag symbol outputs are sliced at zero threshold:
+       b_pred = 1 if out_det < 0.0 else 0
+       b_true = 1 if target < 0.0 else 0
+   - Bit Error Rate (BER) = sum(b_pred != b_true) / total_bits.
+   - Symbol Error Rate (SER) is an error if either the I or Q bit is incorrect.
+
+================================================================================
+EVALUATION METRICS AT SNR = 20.0 dB
+================================================================================
+1. Number of test samples     : 45
+2. Number of users            : 8
+3. Bits per sample            : 1024 bits (64 subcarriers x 8 users x 2 bits/QPSK symbol)
+4. Total bits compared        : 46080 bits (45 samples x 1024 bits)
+5. Number of bit errors       : 0
+6. DET BER (errors/total)     : 0.00000000 (0 / 46080)
+7. DET SER (symbol errors)    : 0.00000000 (0 / 23040)
+
+8. 10 Example Packets (OFDM Subcarrier Transmissions across 8 Users = 16 bits/packet):
+--------------------------------------------------------------------------------
+Pkt  | Sample | Subcarrier | True Bits (16b)      | Pred Bits (16b)      | Errors  
+--------------------------------------------------------------------------------
+1    | 0      | 0          | 1001100111000101     | 1001100111000101     | 0       
+2    | 0      | 1          | 0000100010001010     | 0000100010001010     | 0       
+3    | 0      | 2          | 0010001010000001     | 0010001010000001     | 0       
+4    | 0      | 3          | 1111110101001110     | 1111110101001110     | 0       
+5    | 0      | 4          | 0110000010010110     | 0110000010010110     | 0       
+6    | 0      | 5          | 0111001100010000     | 0111001100010000     | 0       
+7    | 0      | 6          | 1011111110000101     | 1011111110000101     | 0       
+8    | 0      | 7          | 1100110001010001     | 1100110001010001     | 0       
+9    | 0      | 8          | 0010101011010101     | 0010101011010101     | 0       
+10   | 0      | 9          | 1010000010111000     | 1010000010111000     | 0       
+--------------------------------------------------------------------------------
+
+================================================================================
+EVALUATION METRICS AT SNR = 25.0 dB
+================================================================================
+1. Number of test samples     : 45
+2. Number of users            : 8
+3. Bits per sample            : 1024 bits (64 subcarriers x 8 users x 2 bits/QPSK symbol)
+4. Total bits compared        : 46080 bits (45 samples x 1024 bits)
+5. Number of bit errors       : 0
+6. DET BER (errors/total)     : 0.00000000 (0 / 46080)
+7. DET SER (symbol errors)    : 0.00000000 (0 / 23040)
+
+8. 10 Example Packets (OFDM Subcarrier Transmissions across 8 Users = 16 bits/packet):
+--------------------------------------------------------------------------------
+Pkt  | Sample | Subcarrier | True Bits (16b)      | Pred Bits (16b)      | Errors  
+--------------------------------------------------------------------------------
+1    | 0      | 0          | 1001100111000101     | 1001100111000101     | 0       
+2    | 0      | 1          | 0000100010001010     | 0000100010001010     | 0       
+3    | 0      | 2          | 0010001010000001     | 0010001010000001     | 0       
+4    | 0      | 3          | 1111110101001110     | 1111110101001110     | 0       
+5    | 0      | 4          | 0110000010010110     | 0110000010010110     | 0       
+6    | 0      | 5          | 0111001100010000     | 0111001100010000     | 0       
+7    | 0      | 6          | 1011111110000101     | 1011111110000101     | 0       
+8    | 0      | 7          | 1100110001010001     | 1100110001010001     | 0       
+9    | 0      | 8          | 0010101011010101     | 0010101011010101     | 0       
+10   | 0      | 9          | 1010000010111000     | 1010000010111000     | 0       
+--------------------------------------------------------------------------------
+

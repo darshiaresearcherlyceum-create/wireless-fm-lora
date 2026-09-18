@@ -1,0 +1,29 @@
+2026-09-15 17:08:14 [INFO] === Starting Multi-Task Training: Static LoRA (r=8) on Urban_Macro ===
+2026-09-15 17:08:14 [INFO] Device: cpu | Epochs: 10 | Batch Size: 16 | LR: 0.0005
+2026-09-15 17:08:15 [INFO] Static LoRA Total Parameters: 93,676,180 | Trainable Parameters: 8,620,180
+2026-09-15 17:10:28 [INFO] Epoch 01/10 | Train Loss: 3.5599 | Val -> CE NMSE: -7.95 dB | DET BER: 0.0002 | PREC: 1.74 bps/Hz | DEC BER: 0.0524 | LOC RMSE: 34.21 m | Runtime: 120.7s
+2026-09-15 17:12:46 [INFO] Epoch 02/10 | Train Loss: 2.3145 | Val -> CE NMSE: -10.18 dB | DET BER: 0.0001 | PREC: 2.50 bps/Hz | DEC BER: 0.0130 | LOC RMSE: 28.85 m | Runtime: 123.9s
+2026-09-15 17:15:06 [INFO] Epoch 03/10 | Train Loss: 1.6697 | Val -> CE NMSE: -10.54 dB | DET BER: 0.0001 | PREC: 3.19 bps/Hz | DEC BER: 0.0064 | LOC RMSE: 21.63 m | Runtime: 125.4s
+2026-09-15 17:18:19 [INFO] Epoch 04/10 | Train Loss: 1.3594 | Val -> CE NMSE: -10.49 dB | DET BER: 0.0001 | PREC: 3.40 bps/Hz | DEC BER: 0.0041 | LOC RMSE: 18.77 m | Runtime: 171.4s
+2026-09-15 17:20:41 [INFO] Epoch 05/10 | Train Loss: 1.2165 | Val -> CE NMSE: -10.53 dB | DET BER: 0.0001 | PREC: 3.78 bps/Hz | DEC BER: 0.0036 | LOC RMSE: 16.91 m | Runtime: 128.6s
+2026-09-15 17:23:10 [INFO] Epoch 06/10 | Train Loss: 1.0185 | Val -> CE NMSE: -10.52 dB | DET BER: 0.0001 | PREC: 3.75 bps/Hz | DEC BER: 0.0030 | LOC RMSE: 15.99 m | Runtime: 133.8s
+2026-09-15 17:25:57 [INFO] Epoch 07/10 | Train Loss: 0.9776 | Val -> CE NMSE: -10.52 dB | DET BER: 0.0001 | PREC: 3.87 bps/Hz | DEC BER: 0.0029 | LOC RMSE: 15.67 m | Runtime: 152.7s
+2026-09-15 17:28:22 [INFO] Epoch 08/10 | Train Loss: 0.9762 | Val -> CE NMSE: -10.57 dB | DET BER: 0.0002 | PREC: 3.93 bps/Hz | DEC BER: 0.0027 | LOC RMSE: 15.15 m | Runtime: 130.8s
+2026-09-15 17:30:46 [INFO] Epoch 09/10 | Train Loss: 0.9635 | Val -> CE NMSE: -10.58 dB | DET BER: 0.0001 | PREC: 3.98 bps/Hz | DEC BER: 0.0023 | LOC RMSE: 15.16 m | Runtime: 130.5s
+2026-09-15 17:33:07 [INFO] Epoch 10/10 | Train Loss: 1.0114 | Val -> CE NMSE: -10.58 dB | DET BER: 0.0000 | PREC: 3.99 bps/Hz | DEC BER: 0.0026 | LOC RMSE: 15.00 m | Runtime: 126.1s
+2026-09-15 17:33:07 [INFO] Training completed. Best model checkpoint saved to: results/checkpoints/static_lora_day11_best.pt
+2026-09-15 17:33:07 [INFO] Saved training progression to: logs/day11/static_lora\metrics.csv
+2026-09-15 17:33:07 [INFO] === Commencing Test Split Evaluation across SNR Grid ===
+2026-09-15 17:33:07 [INFO] ================================================================================
+2026-09-15 17:33:07 [INFO] METHOD: STATIC_LORA
+2026-09-15 17:33:07 [INFO] Trainable Parameters: 8,620,180
+2026-09-15 17:33:07 [INFO] Evaluation SNR Grid: [-5, 0, 5, 10, 15, 20, 25] dB
+2026-09-15 17:33:07 [INFO] ================================================================================
+2026-09-15 17:33:21 [INFO] SNR: -5 dB | CE NMSE:  -0.55 dB | DET BER: 0.0308 (SER: 0.0608) | PREC Sum-Rate:  2.11 bps/Hz | DEC BER: 0.0352 | LOC RMSE: 19.67 m
+2026-09-15 17:33:35 [INFO] SNR:  0 dB | CE NMSE:  -5.31 dB | DET BER: 0.0078 (SER: 0.0152) | PREC Sum-Rate:  3.16 bps/Hz | DEC BER: 0.0114 | LOC RMSE: 16.85 m
+2026-09-15 17:33:49 [INFO] SNR:  5 dB | CE NMSE:  -9.60 dB | DET BER: 0.0013 (SER: 0.0026) | PREC Sum-Rate:  3.72 bps/Hz | DEC BER: 0.0054 | LOC RMSE: 15.08 m
+2026-09-15 17:34:03 [INFO] SNR: 10 dB | CE NMSE: -12.07 dB | DET BER: 0.0001 (SER: 0.0003) | PREC Sum-Rate:  3.95 bps/Hz | DEC BER: 0.0030 | LOC RMSE: 14.42 m
+2026-09-15 17:34:17 [INFO] SNR: 15 dB | CE NMSE: -13.51 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.01 bps/Hz | DEC BER: 0.0020 | LOC RMSE: 14.23 m
+2026-09-15 17:34:31 [INFO] SNR: 20 dB | CE NMSE: -15.72 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.05 bps/Hz | DEC BER: 0.0020 | LOC RMSE: 14.08 m
+2026-09-15 17:34:45 [INFO] SNR: 25 dB | CE NMSE: -16.79 dB | DET BER: 0.0000 (SER: 0.0000) | PREC Sum-Rate:  4.06 bps/Hz | DEC BER: 0.0021 | LOC RMSE: 14.06 m
+2026-09-15 17:34:45 [INFO] Saved SNR evaluation metrics to: logs/day11/static_lora\snr_evaluation.csv

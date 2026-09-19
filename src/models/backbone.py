@@ -90,7 +90,7 @@ class GPT2Block(nn.Module):
 
 class NativeGPT2Backbone(nn.Module):
     """
-    Standard 12-layer GPT-2 Transformer backbone architecture.
+    Standard 12-layer GPT-2 Transformer backbone architecture (124M frozen backbone parameters).
     """
     def __init__(self, n_layer: int = 12, d_model: int = 768, n_head: int = 12):
         super().__init__()

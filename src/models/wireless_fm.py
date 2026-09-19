@@ -13,8 +13,8 @@ class EnvironmentAwareWirelessFM(nn.Module):
     Integrates:
       - Frozen ViT-B/16 Scene Encoder
       - Learnable Task Embeddings
-      - Dynamic LoRA Hypernetwork with Gumbel-Softmax Rank Selection
-      - Frozen Pretrained GPT-2 Backbone wrapped with Dynamic LoRA
+      - Dynamic LoRA Hypernetwork with Gumbel-Softmax Rank Selection (35.09M trainable Proposed parameters)
+      - Frozen Pretrained GPT-2 Backbone (124M frozen backbone parameters) wrapped with Dynamic LoRA
       - 5 Task Heads with Semantic Coupling
     """
     def __init__(

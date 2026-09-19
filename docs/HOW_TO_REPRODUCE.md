@@ -51,7 +51,7 @@ python scripts/generate_data.py --samples 300 --env Urban_Macro --seed 42
 ```
 
 ### Step 2: Train Proposed Dynamic LoRA
-Trains the frozen GPT-2 + scene-conditioned hypernetwork model on Urban_Macro for 10 epochs:
+Trains the 124M frozen GPT-2 backbone + scene-conditioned hypernetwork model (35.09M trainable parameters) on Urban_Macro for 10 epochs:
 ```bash
 python scripts/train_multitask.py --env Urban_Macro --epochs 10 --config configs/proposed.yaml
 ```
